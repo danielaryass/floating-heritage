@@ -19,8 +19,10 @@ class UserSeeder extends Seeder
          $user = [
             [
                 'name'           => 'Super Admin',
+                'username'       => 'superadmin',
                 'email'          => 'admin@mail.com',
-                'password'       => Hash::make('Admin12345'),
+                'password'       => Hash::make('12345678'),
+                'type_user_id'   => DB::table('type_user')->where('name', 'Admin')->value('id'),
                 'remember_token' => null,
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),

@@ -25,12 +25,20 @@ class PermissionRoleSeeder extends Seeder
         Role::findOrFail(1)->permission()->sync($admin_permissions->pluck('id'));
 
         // get permission simple for admin
-        $user_permissions = $admin_permissions->filter(function ($permission) {
-            return substr($permission->title, 0, 5) != 'user_' && substr($permission->title, 0, 5) != 'role_' && substr($permission->title, 0, 11) != 'permission_';
+        $editor_permissions = $admin_permissions->filter(function ($permission) {
+            // fix admin_access
+            return $permission->title != 'admin_access';
         }); 
-       
         // for admin    
-        Role::findOrFail(2)->permission()->sync($user_permissions);
+        Role::findOrFail(2)->permission()->sync($editor_permissions);
+        // add permission for writter/id 3 just writter_acces
+        $writter_permissions = $editor_permissions->filter(function ($permission) {
+            // fix admin_access
+            return $permission->title != 'editor_access';
+        }); 
+        Role::findOrFail(3)->permission()->sync($writter_permissions);
+        // how to add permission for writter/id 3 just writter_accesRole::findOrFail(3)->permission()->sync(Permission::where('title', 'writter_acces')->pluck('id'));
+
     
     }
 }

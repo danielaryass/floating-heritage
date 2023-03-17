@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+// Route untuk backsite/dashboard dengan ketentuan user harus login terlebih dahulu
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('dashboard', DashboardController::class);
+    Route::resource('post', PostController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('user', UserController::class);
+
 });

@@ -27,6 +27,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username',
+
     ];
 
     /**
@@ -58,4 +60,28 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public function role()
+    {
+        return $this->belongsToMany('App\Models\ManagementAccess\Role')->withPivot('role_id');
+    }
+    public function role_user()
+    {
+        return $this->hasMany('App\Models\ManagementAccess\RoleUser','user_id');
+    }
+    // relasi ke tabel post
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+    // relasi ke tabel category
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+    // relasi ke tabel type_user 
+    public function type_user()
+    {
+        //3 parameters (path model,field foreign key, field primary key from table hasMany/hasone)
+        return $this->belongsTo('App\Models\User','type_user_id','id');
+    }
 }
