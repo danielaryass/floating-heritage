@@ -1,0 +1,29 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.pagination li {
+    margin: 0 0.25rem;
+}
+
+.pagination-link {
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    color: #4a5568;
+    background-color: #edf2f7;
+    transition: all 0.3s ease-in-out;
+}
+
+.pagination-link:hover,
+.pagination-link:focus {
+    background-color: #cbd5e0;
+    color: #2d3748;
+}
+
+.pagination-link[aria-current="page"] {
+    background-color: #4299e1;
+    color: #fff;
+}

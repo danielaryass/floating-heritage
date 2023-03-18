@@ -162,9 +162,9 @@ class UserController extends Controller
         $user['profile_photo_path'] = isset($user['profile_photo_path']) ? $request->file('profile_photo_path')->store('assets/photo-user', 'public') : "";
         // hash password
         // current password and new password, but if new password null then password not change
-        if($request->password != null){
+        if($request->current_password != null){
             if(Hash::check($request->current_password, $user->password)){
-                $user->password = Hash::make($request->password);
+                $user->password = Hash::make($request->new_password);
             }else{
                 alert()->error('Error','Current password not match');
                 return back();

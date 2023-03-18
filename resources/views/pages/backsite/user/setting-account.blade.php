@@ -57,7 +57,7 @@
                             @csrf
                               <div class="row mb-4">
                                 <div class="col-md-2">
-                                    @if (isset($user->profile_photo_path))
+                                    @if ($user->profile_photo_path != null)
                                     <img class="img-preview" src="{{url(Storage::url($user->profile_photo_path))}}" alt="Photo User" style="max-width: 100px; max-height:100px;">
                                     @else
                                     <img class="img-preview" src="{{asset('/backsite/assets/images/profile.webp')  }}" alt="Photo User" style="max-width: 100px; max-height:100px;">

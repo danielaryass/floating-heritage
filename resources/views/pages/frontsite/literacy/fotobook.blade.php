@@ -1,18 +1,18 @@
 @extends('layouts.front')
-@section('title', 'Teater')
+@section('title', 'Fotobook')
 @section('meta-description')
-<meta name="description" content="Teater">
-<meta property="og:description" content="Teater">
-<meta property="description" content="Teater">
-<meta property="og:url" content="{{route('Teater')}}">
-<meta property="og:title" content="Teater | Floating Herritage Festival">
+<meta name="description" content="Fotobook">
+<meta property="og:description" content="Fotobook">
+<meta property="description" content="Fotobook">
+<meta property="og:url" content="{{route('Fotobook')}}">
+<meta property="og:title" content="Fotobook | Floating Herritage Festival">
 @endsection
 @section('content')
 <div class="container">
     <div class="page-banner" style="background-image: url({{asset('frontsite/assets/img/bg_pattern.svg')}});" >
       <div class="row justify-content-center align-items-center h-100">
         <div class="col-md-6">
-          <h1 class="text-center">Teater</h1>
+          <h1 class="text-center">Fotobook</h1>
         </div>
       </div>
     </div>

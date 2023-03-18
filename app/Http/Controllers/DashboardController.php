@@ -11,7 +11,10 @@ class DashboardController extends Controller
     public function index()
     {
         // menghitung jumlah user & post & category
+        $post = Post::count();
+        // post page views for user login
+        $post_views = Post::where('user_id', auth()->user()->id)->sum('page_views');
   
-        return view('pages.backsite.dashboard.index');
+        return view('pages.backsite.dashboard.index', compact('post', 'post_views'));
     }
 }

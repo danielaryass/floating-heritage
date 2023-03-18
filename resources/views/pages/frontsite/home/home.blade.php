@@ -126,7 +126,9 @@
           </div>
         </div>
         @empty
-        No Data
+        <div class="col-lg-12 text-center">
+          <p>No Post</p>  
+        </div>
         @endforelse
       </div>
 

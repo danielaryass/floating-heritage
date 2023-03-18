@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="col-lg-7 d-none d-lg-block">
-                <div id="auth-right" style="background-image: url({{ asset('/backsite/assets/images/kecak.webp') }}); background-size:cover"></div>
+                <div id="auth-right" style="background-image: url({{ asset('/backsite/assets/images/logo.jpeg') }}); background-size:fit"></div>
             </div>
         </div>
     </div>

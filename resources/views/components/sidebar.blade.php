@@ -81,7 +81,7 @@
                         @endcan
                       <li
                           class="sidebar-item {{ request()->is('/') || request()->is('/*') ? 'active' : '' }}">
-                          <a href="#" class="sidebar-link" target="_blank">
+                          <a href="{{route('home')}}" class="sidebar-link" target="_blank">
                               <i class="bi bi-house-door"></i>
                               <span>Home Page</span>
                           </a>

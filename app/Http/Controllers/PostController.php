@@ -107,9 +107,16 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $data = $request->all();
-        $data['image'] = isset($data['image']) ? $request->file('image')->store('assets/image-post', 'public') : $post->image;
-        // delete image on storage
-        \Storage::disk('public')->delete($post->image);
+        // if image null, then use old image
+        if($request->image == null){
+            $data['image'] = $post->image;
+        }else{
+            // delete old image
+            \Storage::disk('public')->delete($post->image);
+            // upload new image
+            $data['image'] = $request->file('image')->store('assets/image-post', 'public');
+        }
+        // update data
         $post->update($data);
 
         alert()->success('Success', 'Post updated successfully.');

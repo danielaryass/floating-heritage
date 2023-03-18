@@ -84,8 +84,8 @@
                                     <div class="col-lg-10 col-9">
                                         <img class="img-preview" src="{{ url(Storage::url($post->image)) }}" alt="" style="width:300px;">
                                         <div class="custom-file">
-                                            <input type="file" class="form-control dropify" name="image" id="image"
-                                                data-allowed-file-extensions="png jpg jpeg" data-show-remove="false" onchange="previewImage()">
+                                            <input type="file" class="form-control-file" id="photo"
+                                            name="image" onchange="previewImage()">
 
                                         </div>
 
