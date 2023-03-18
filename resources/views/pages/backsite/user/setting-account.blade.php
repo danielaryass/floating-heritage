@@ -1,5 +1,5 @@
 @extends('layouts.dash')
-@section('title', 'Create Post')
+@section('title', 'Edit User')
 @section('content')
     @push('after-styles')
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css"
@@ -19,7 +19,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last mb-5">
-                    <h3>Create New Post</h3>
+                    <h3>Edit User</h3>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -28,7 +28,7 @@
                                 <a href="{{ route('dashboard.index') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Create New Post
+                                Edit User
                             </li>
                         </ol>
                     </nav>
@@ -38,7 +38,7 @@
         <section class="section">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Create New Post</h4>
+                    <h4 class="card-title">Edit User</h4>
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
@@ -51,64 +51,83 @@
                         </div>
                     @endif
                     <div class="row">
-                        <form class="form form-horizontal" action="{{ route('post.store') }}" method="POST"
+                        <form class="form form-horizontal" action="{{ route('UpdateSettingAccount')}}" method="POST"
                             enctype="multipart/form-data">
-
+                            @method('PUT')
                             @csrf
+                              <div class="row mb-4">
+                                <div class="col-md-2">
+                                    @if (isset($user->profile_photo_path))
+                                    <img class="img-preview" src="{{url(Storage::url($user->profile_photo_path))}}" alt="Photo User" style="max-width: 100px; max-height:100px;">
+                                    @else
+                                    <img class="img-preview" src="{{asset('/backsite/assets/images/profile.webp')  }}" alt="Photo User" style="max-width: 100px; max-height:100px;">
+                                    @endif
+                                </div>
+                                <div class="col-md-10">
+                                      <label for="upload" class="form-label">Upload Photo</label>
+                                      <input type="file" class="form-control" id="upload"
+                                                                name="profile_photo_path" onchange="previewImage()">
+                                </div>
+                              </div>
+                              
                             <div class="col-md-12">
                                 <div class="form-group row align-items-center">
                                     <div class="col-lg-2 col-3">
-                                        <label class="col-form-label">Title</label>
+                                        <label class="col-form-label">Name</label>
                                     </div>
                                     <div class="col-lg-10 col-9">
-                                        <input type="text" id="title" class="form-control" name="title"
-                                            placeholder="Title" value="{{ old('title') }}" />
+                                        <input type="text" id="name" class="form-control" name="name"
+                                            placeholder="Name" value="{{ $user->name ?? old('name') }}" />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group row align-items-center">
                                     <div class="col-lg-2 col-3">
-                                        <label class="col-form-label">Content</label>
+                                        <label class="col-form-label">Email</label>
                                     </div>
                                     <div class="col-lg-10 col-9">
-                                        <textarea name="content" class="form-control ckeditor-5" id="ckeditor5">{{ old('content') }} </textarea>
+                                        <input type="text" id="email" class="form-control" name="email"
+                                            placeholder="example@gmail.com" value="{{ $user->email ?? old('email') }}" />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group row align-items-center">
                                     <div class="col-lg-2 col-3">
-                                        <label class="col-form-label">Image</label>
+                                        <label class="col-form-label">Current Password</label>
                                     </div>
                                     <div class="col-lg-10 col-9">
-                                        <img class="img-preview" src="" alt="" style="width:300px;">
-                                        <div class="custom-file">
-                                            <input type="file" class="form-control-file" id="photo"
-                                                                name="image" onchange="previewImage()">
-
-                                        </div>
-
+                                        <input type="password" class="form-control"
+                                                            placeholder="New Password" 
+                                                            name="current_password" id="current_password">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group row align-items-center">
                                     <div class="col-lg-2 col-3">
-                                        <label class="col-form-label">Category</label>
+                                        <label class="col-form-label">New Password</label>
                                     </div>
                                     <div class="col-lg-10 col-9">
-                                        <select class="form-select" id="basicSelect" name="category_id">
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-
-                                        </select>
-
+                                        <input type="password" class="form-control"
+                                                            placeholder="New Password" 
+                                                            name="new_password" id="new_password">
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-md-12">
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label">Confirmation New Password</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                        <input type="password" class="form-control"
+                                                            placeholder="Confirmation New Password" 
+                                                            name="confirmation_password" id="confirmation_password">
+                                    </div>
+                                </div>
+                            </div>
 
 
 
@@ -143,47 +162,4 @@
 </script>
     <script src="{{ asset('/backsite/assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
     <script src="{{ asset('/backsite/assets/js/pages/form-element-select.js') }}"></script>
-    <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js') }}"></script>
-    <script script script src="{{ url('https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js') }}"></script>
-
-    <script>
-        $('.dropify').dropify({
-            messages: {
-                'default': 'Seret dan jatuhkan file di sini atau klik',
-            }
-        });
-    </script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#ckeditor5'), {
-                licenseKey: '',
-                toolbar: {
-                    items: [
-                        'heading', '|',
-                        'alignment', '|',
-                        'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
-                        'link', '|',
-                        'bulletedList', 'numberedList', 'todoList',
-                        '-', // break point
-                        'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor', '|',
-                        'code', 'codeBlock', '|',
-                        'insertTable', '|',
-                        'outdent', 'indent', '|',
-                        'blockQuote', '|',
-                        'undo', 'redo'
-                    ],
-                }
-            })
-            .then(editor => {
-                window.editor = editor;
-            })
-            .catch(error => {
-                console.error('Oops, something went wrong!');
-                console.error(
-                    'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:'
-                );
-                console.warn('Build id: t94173qfk3d4-jfha1cexgplv');
-                console.error(error);
-            });
-    </script>
 @endpush

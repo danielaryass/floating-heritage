@@ -104,6 +104,7 @@
                                       style="display: none;">
                                       @csrf
                                   </form>
+                                  <a href="{{route('SettingAccount')}}">Setting Account</a>
 
                               </li>
                           </ul>

@@ -82,9 +82,10 @@
                                         <label class="col-form-label">Image</label>
                                     </div>
                                     <div class="col-lg-10 col-9">
+                                        <img class="img-preview" src="{{ url(Storage::url($post->image)) }}" alt="" style="width:300px;">
                                         <div class="custom-file">
                                             <input type="file" class="form-control dropify" name="image" id="image"
-                                                data-allowed-file-extensions="png jpg jpeg" data-show-remove="false">
+                                                data-allowed-file-extensions="png jpg jpeg" data-show-remove="false" onchange="previewImage()">
 
                                         </div>
 
@@ -137,7 +138,17 @@
     <script src="{{ asset('/backsite/assets/js/pages/form-element-select.js') }}"></script>
     <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js') }}"></script>
     <script script script src="{{ url('https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js') }}"></script>
-
+    <script>
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(photo.files[0]);
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
     <script>
         $('.dropify').dropify({
             messages: {

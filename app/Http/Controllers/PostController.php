@@ -19,8 +19,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        // create condition if user is admin or editor get all post and if user is penulis get post by user id
-        if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('editor')){
+        // create condition if type_user_id == 1 && 2 then show all post, but if type_user_id == 3 then show only post by user_id
+        if(auth()->user()->type_user_id == 1 || auth()->user()->type_user_id == 2){
             $posts = Post::orderBy('created_at', 'desc')->get();
         }else{
             $posts = Post::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();
