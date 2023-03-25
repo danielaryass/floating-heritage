@@ -173,6 +173,6 @@ class UserController extends Controller
         // store database
         $user->save();
         alert()->success('Success','Successfully updated user');
-        return redirect()->route('user.index');
+        return redirect()->route('dashboard.index');
     }
 }
