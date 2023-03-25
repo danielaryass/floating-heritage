@@ -6,9 +6,9 @@
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="icon" type="image/x-icon" href="{{asset("/backsite/assets/images/favicon.webp")}}">
-  @yield('meta-description')]
-
+  @yield('meta-description')
   <title>@yield('title') | Floating Herritage Festival</title>
+
   @stack('before-styles')
   @include('includes.frontsite.style')
   @stack('after-styles')
