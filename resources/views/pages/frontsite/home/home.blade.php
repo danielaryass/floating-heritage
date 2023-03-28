@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-6 py-5 wow zoomIn">
           <div class="img-fluid text-center">
-            <img src="{{asset('frontsite/assets/img/maritime.png')}}" alt="">
+            <img src="{{asset('frontsite/assets/img/maritime.png')}}" alt="Floating Heritage" style="background-size:cover; width:110%;">
           </div>
         </div>
       </div>

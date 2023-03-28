@@ -35,8 +35,8 @@ $description = substr($description, 0, strrpos($description, ' ')) . '...';
         <div class="col-lg-8">
           <div class="blog-single-wrap">
             <div class="header">
-              <div class="post-thumb" style="height: 400px">
-                <img src="{{ url(Storage::url($post->image)) }}" alt="{{$post->title}}">
+              <div class="post-thumb">
+                <img src="{{ url(Storage::url($post->image)) }}" alt="{{$post->title}}" style="">
               </div>
             </div>
             <h1 class="post-title">{{$post->title}} </h1>
